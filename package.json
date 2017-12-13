@@ -1,0 +1,41 @@
+{
+  "ava": {
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "powerAssert": false,
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ],
+    "babel": "inherit"
+  },
+  "name": "soluciona.do-api-service",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src -d dist",
+    "serve": "npm run build && node dist/index.js",
+    "test": "npm run test-unit --silent && npm run test-integration --silent",
+    "test-unit": "echo \"> Unit Test\" && ava test/unit/**/*.test.js && echo \"\"",
+    "test-integration": "echo \"> Integration Test\" && ./scripts/test.sh"
+  },
+  "author": "Joan Gabriel Peralta Santana",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "dotenv": "^4.0.0",
+    "koa": "^2.4.1",
+    "koa-router": "^7.3.0",
+    "mongodb": "^2.2.33"
+  }
+}
