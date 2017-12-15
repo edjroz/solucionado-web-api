@@ -19,8 +19,8 @@
     "build": "babel src -d dist",
     "serve": "npm run build && node dist/index.js",
     "test": "npm run test-unit --silent && npm run test-integration --silent",
-    "test-unit": "echo \"> Unit Test\" && ava test/unit/**/*.test.js && echo \"\"",
-    "test-integration": "echo \"> Integration Test\" && ./scripts/test.sh"
+    "test-unit": "echo \"> Unit Test\" && ava test/unit && echo \"\"",
+    "test-integration": "echo \"> Integration Test\" && ava test/integration && echo \"\""
   },
   "author": "Joan Gabriel Peralta Santana",
   "license": "UNLICENSED",
@@ -36,6 +36,6 @@
     "dotenv": "^4.0.0",
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
-    "mongodb": "^2.2.33"
+    "mongodb": "^3.0.0-rc0"
   }
 }

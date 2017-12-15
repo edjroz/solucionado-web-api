@@ -20,18 +20,17 @@ let dbConnection, services = {}, httpServer
 
 // Create db connection
 
-export const CreateDbConnection = async (dbUri) => {
-  if (!dbUri) {
+export const CreateDbConnection = async ({ uri, dbName }) => {
+  if (!uri) {
     throw new Error('Invalid mongo connection uri')
   }
   return new Promise((resolve, reject) => {
-    MongoClient.connect(dbUri, (err, connection) => {
+    MongoClient.connect(uri, (err, client) => {
       if (err) {
         return reject(err)
       }
       debug('app:log')('Database ready')
-      dbConnection = connection
-      return resolve(connection)
+      return resolve(dbConnection = client.db(dbName))
     })
   })
 }
@@ -85,7 +84,7 @@ const shutdown = async () => {
 };
 
 if (process.env.NODE_ENV !== 'test') {
-  CreateDbConnection(config.db.uri)
+  CreateDbConnection(config.db)
   .then(CreateServices)
   .then(services => RunHttpService({
     port: config.http.port,
@@ -96,6 +95,7 @@ if (process.env.NODE_ENV !== 'test') {
   })
   .catch(err => {
     debug('app:error')('Error booting application', err)
+    process.exit(1)
   })
 
   process.on('SIGTERM', () => shutdown().then(() => process.exit(0)))

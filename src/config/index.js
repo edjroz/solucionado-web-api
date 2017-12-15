@@ -19,7 +19,8 @@ export const app = {
 }
 
 export const db = {
-  uri: process.env.MONGO_URI || ''
+  uri: process.env.MONGO_URI || 'mongodb://127.0.0.1',
+  dbName: process.env.MONGO_DB_NAME || 'solucionado'
 }
 
 export const http = {
