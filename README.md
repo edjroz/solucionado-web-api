@@ -1,6 +1,6 @@
 # solucionado-api-service
 
-Soluciona.do
+http://soluciona.do
 
 This projects consists in creating a network in wich people can work together to bring solutions  to social problems.
 
