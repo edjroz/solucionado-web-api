@@ -30,7 +30,8 @@ export const CreateDbConnection = async ({ uri, dbName }) => {
         return reject(err)
       }
       debug('app:log')('Database ready')
-      return resolve(dbConnection = client.db(dbName))
+      dbConnection = client
+      return resolve(client.db(dbName))
     })
   })
 }
@@ -64,7 +65,7 @@ export const RunHttpService = async (options) => {
 
 // Graceful shutdown.
 
-const shutdown = async () => {
+export const shutdown = async () => {
   const date = new Date()
   debug('app:info')('\nOh, good bye!, starting graceful shutdown')
 

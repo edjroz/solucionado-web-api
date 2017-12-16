@@ -1,4 +1,8 @@
 import test from 'ava'
+import { beforeEach, afterEach } from '../setup'
+
+test.beforeEach(beforeEach)
+test.afterEach(afterEach)
 
 test.todo('users - throws an error if there is missing or invalid parameters creating new one')
 test.todo('users - can create a new one')
