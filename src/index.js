@@ -65,7 +65,7 @@ export const RunHttpService = async (options) => {
 // Graceful shutdown.
 
 const shutdown = async () => {
-  const date = new Date();
+  const date = new Date()
   debug('app:info')('\nOh, good bye!, starting graceful shutdown')
 
   if (dbConnection) {
@@ -75,15 +75,20 @@ const shutdown = async () => {
   if (httpServer) {
     await (new Promise(resolve => {
       httpServer.close(() => resolve())
-    }));
+    }))
   }
   
   debug('app:info')(`Graceful shutdown ends [${ Date.now() - date.getTime()}ms]`)
   
-  return Promise.resolve();
-};
+  return Promise.resolve()
+}
 
 if (process.env.NODE_ENV !== 'test') {
+
+  if (!process.env.DEBUG && process.env.NODE_ENV !== 'production') {
+    debug.enable('app:*')
+  }
+
   CreateDbConnection(config.db)
   .then(CreateServices)
   .then(services => RunHttpService({
