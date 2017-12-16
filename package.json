@@ -15,10 +15,11 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "lint": "eslint .",
     "start": "nodemon src/index.js --exec babel-node",
     "build": "babel src -d dist",
     "serve": "npm run build && node dist/index.js",
-    "test": "npm run test-unit --silent && npm run test-integration --silent",
+    "test": "npm run lint && npm run test-unit --silent && npm run test-integration --silent",
     "test-unit": "echo \"> Unit Test\" && cross-env NODE_ENV=test ava test/unit && echo \"\"",
     "test-integration": "echo \"> Integration Test\" && cross-env NODE_ENV=test ava test/integration && echo \"\""
   },
@@ -31,6 +32,12 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.1.1",
+    "eslint": "^4.13.1",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "mongo-in-memory": "0.0.5"
   },
   "dependencies": {

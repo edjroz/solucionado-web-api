@@ -1,6 +1,6 @@
 export default (solutionsRepository) => {
   return {
-    async all() {
+    async all () {
       return solutionsRepository.all()
     }
   }

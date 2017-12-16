@@ -10,7 +10,7 @@ import * as dotenv from 'dotenv'
  */
 
 if (fs.existsSync('.env')) {
-  dotenv.load();
+  dotenv.load()
 }
 
 export const app = {

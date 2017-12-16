@@ -1,7 +1,7 @@
 export default (db) => {
   const collection = db.collection('solutions')
   return {
-    async all() {
+    async all () {
       return collection.find({}).toArray()
     }
   }

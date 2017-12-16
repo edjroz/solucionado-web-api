@@ -16,7 +16,9 @@ import createSolutionsService from './core/services/solutions'
 
 import createSolutionsRepository from './adapters/repository/solutions'
 
-let dbConnection, services = {}, httpServer
+let dbConnection
+let services = {}
+let httpServer
 
 // Create db connection
 
@@ -54,13 +56,13 @@ export const RunHttpService = async (options) => {
   }
   httpServer = http.createServer(api(services))
   httpServer.listen(options.port)
-  return await (new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     httpServer.on('error', reject)
-    httpServer.on('listening', () => { 
+    httpServer.on('listening', () => {
       debug('app:log')(`Http service running on port: ${httpServer.address().port}`)
       resolve(httpServer)
     })
-  }))
+  })
 }
 
 // Graceful shutdown.
@@ -78,31 +80,30 @@ export const shutdown = async () => {
       httpServer.close(() => resolve())
     }))
   }
-  
-  debug('app:info')(`Graceful shutdown ends [${ Date.now() - date.getTime()}ms]`)
-  
+
+  debug('app:info')(`Graceful shutdown ends [${Date.now() - date.getTime()}ms]`)
+
   return Promise.resolve()
 }
 
 if (process.env.NODE_ENV !== 'test') {
-
   if (!process.env.DEBUG && process.env.NODE_ENV !== 'production') {
     debug.enable('app:*')
   }
 
   CreateDbConnection(config.db)
-  .then(CreateServices)
-  .then(services => RunHttpService({
-    port: config.http.port,
-    services
-  }))
-  .then(() => {
-    debug('app:log')('Application Boot ready')
-  })
-  .catch(err => {
-    debug('app:error')('Error booting application', err)
-    process.exit(1)
-  })
+    .then(CreateServices)
+    .then(services => RunHttpService({
+      port: config.http.port,
+      services
+    }))
+    .then(() => {
+      debug('app:log')('Application Boot ready')
+    })
+    .catch(err => {
+      debug('app:error')('Error booting application', err)
+      process.exit(1)
+    })
 
   process.on('SIGTERM', () => shutdown().then(() => process.exit(0)))
   process.on('SIGINT', () => shutdown().then(() => process.exit(0)))

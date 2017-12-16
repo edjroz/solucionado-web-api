@@ -11,7 +11,7 @@ export const beforeEach = async () => {
 
   ctx.mongod = mongod
   ctx.dbConnection = await app.CreateDbConnection({ uri: dbUri, dbName })
-  ctx.services =  await app.CreateServices(ctx.dbConnection)
+  ctx.services = await app.CreateServices(ctx.dbConnection)
   ctx.httpServer = await app.RunHttpService({
     port: 0, // Use port 0 to get any available port
     services: ctx.services

@@ -1,7 +1,6 @@
 import test from 'ava'
-import assert from 'assert'
 
-import app, {RunHttpService} from '../../src/'
+import {RunHttpService} from '../../src/'
 
 process.env.NODE_ENV = 'test'
 
@@ -34,11 +33,9 @@ suite('should require a valid core services to start', async t => {
 })
 
 suite('should start up the http service', async t => {
-  await RunHttpService({
+  const server = await RunHttpService({
     port: 0,
     services: {}
   })
-  .then((server) => {
-    server.close()
-  })
+  server.close()
 })
