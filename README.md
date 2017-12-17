@@ -2,7 +2,7 @@
 
 Core api service of project [SolucionaDO](https://github.com/moondevs/solucionado) built in JavaScript.
 
-Technologies and styles:
+Technologies, guidelines and tools:
 - [Node.js](https://nodejs.org)
 - [MongoDB](https://www.mongodb.com)
 - [Ava (JavaScript test runner)](https://www.npmjs.com/package/ava)
