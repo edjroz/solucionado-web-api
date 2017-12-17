@@ -1,14 +1,21 @@
 # solucionado-api-service
 
-http://soluciona.do
+Core api service of project [SolucionaDO](https://github.com/moondevs/solucionado) built in JavaScript.
 
-This projects consists in creating a network in wich people can work together to bring solutions  to social problems.
+Technologies and styles:
+- [Node.js](https://nodejs.org)
+- [MongoDB](https://www.mongodb.com)
+- [Ava (JavaScript test runner)](https://www.npmjs.com/package/ava)
+- [JavaScript Standard Style](https://standardjs.com/)
 
-To-do
-====
+Run the program
+=====
+1. Clone repository
+2. Install Node.js v8.9.0 or higher from https://nodejs.org/en/download/current/
+3. Go to project folder and run the command `npm install` and then `npm start`
 
-- Central-api
-- Android/iOS app for easy vote access
-- Web site
-- bring down the system (for we shall no longer be part of the personal agenda of those in charge)
-and many other things
+Contribute
+=====
+1. Check and discuss the issues.
+2. Develop the features and send a pull request.
+3. Make sure for test are working and eslint don't throws errors or warnings.
