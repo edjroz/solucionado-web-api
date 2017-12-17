@@ -1,25 +1,24 @@
 import * as app from '../src'
 import MongoInMemory from 'mongo-in-memory'
 
-const ctx = {}
 const dbName = 'test-solucionado'
 
-export const beforeEach = async () => {
+export const beforeEach = async function () {
   // Start up db instance and http service
   const mongod = new MongoInMemory()
   const dbUri = mongod.getMongouri(dbName)
 
-  ctx.mongod = mongod
-  ctx.dbConnection = await app.CreateDbConnection({ uri: dbUri, dbName })
-  ctx.services = await app.CreateServices(ctx.dbConnection)
-  ctx.httpServer = await app.RunHttpService({
+  this.mongod = mongod
+  this.dbConnection = await app.CreateDbConnection({ uri: dbUri, dbName })
+  this.services = await app.CreateServices(this.dbConnection)
+  this.httpServer = await app.RunHttpService({
     port: 0, // Use port 0 to get any available port
-    services: ctx.services
+    services: this.services
   })
 }
 
-export const afterEach = async () => {
+export const afterEach = async function () {
   // Close db instance and http service
-  ctx.mongod.stop()
+  this.mongod.stop()
   await app.shutdown()
 }
