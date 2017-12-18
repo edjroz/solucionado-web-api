@@ -1,5 +1,5 @@
 {
-  "extends": "standard",
+  "extends": "airbnb",
   "rules": {
     "no-return-assign": 0
   }
